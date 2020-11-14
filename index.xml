@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Ruilong Zhuang</title>
+    <link>https://ruilong96.github.io/</link>
+      <atom:link href="https://ruilong96.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <description>Ruilong Zhuang</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 Ruilong Zhuang</copyright><lastBuildDate>Fri, 13 Nov 2020 16:35:20 -0500</lastBuildDate>
+    <image>
+      <url>https://ruilong96.github.io/images/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_2.png</url>
+      <title>Ruilong Zhuang</title>
+      <link>https://ruilong96.github.io/</link>
+    </image>
+    
+    <item>
+      <title>Malaria Cell Image Detection</title>
+      <link>https://ruilong96.github.io/project/malaria_cell_image_detection/</link>
+      <pubDate>Fri, 13 Nov 2020 16:35:20 -0500</pubDate>
+      <guid>https://ruilong96.github.io/project/malaria_cell_image_detection/</guid>
+      <description>&lt;h1 id=&#34;about-the-project&#34;&gt;About the project&lt;/h1&gt;
+&lt;p&gt;The main goal of this project is to detect the infected Malaria cells among the images of the parasitized and uninfected cells.&lt;/p&gt;
+&lt;h1 id=&#34;methodology&#34;&gt;Methodology&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Data: The dataset is acquired from Kaggle dataset a total of 27,558 cell images with equal instances of parasitized and uninfected cells, which are segmented cells from the thin blood smear slide images from the Malaria Screener research activity.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Metadata: The images are stored in two folders labelled as infected and uninfected. Each of images is in RGB format and has size of 142 × 163 pixels.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Since the dataset contains a set of image data and the project is a classification problem, I consider that convolution neural network(CNN) is the most reasonable and appropriate approach for this project. Also, it is because CNNs work well with data that has a spatial relationship.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Metrics: Tuned and evaluated models through computing the accuracy, presented by confusion matrix and accuracy score on the test set.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;result-summary&#34;&gt;Result summary&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;Baseline model:
+&lt;ul&gt;
+&lt;li&gt;94.4% accuracy on the test set&lt;/li&gt;
+&lt;li&gt;Precision = 0.9408122833085686&lt;/li&gt;
+&lt;li&gt;Recall = 0.9200775006054734&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;./ROC1.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Regularized model:
+&lt;ul&gt;
+&lt;li&gt;95.8% accuracy on the test set&lt;/li&gt;
+&lt;li&gt;Precision = 0.9501204819277108&lt;/li&gt;
+&lt;li&gt;Recall = 0.9661847586375888&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;./ROC2.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Model using Keras:
+&lt;ul&gt;
+&lt;li&gt;95.27% accuracy on the test set&lt;/li&gt;
+&lt;li&gt;Precision = 0.925703737886479&lt;/li&gt;
+&lt;li&gt;Recall = 0.9830923793187945&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;img src=&#34;./ROC3.png&#34; alt=&#34;img&#34;&gt;&lt;/p&gt;
+&lt;h1 id=&#34;further-details&#34;&gt;Further Details&lt;/h1&gt;
+&lt;p&gt;For more information, check out:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;./malaria-cell-project-report.pdf&#34;&gt;Project Report&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Project Code (&lt;a href=&#34;./malaria-cell-detection-using-tensorflow.html&#34;&gt;html&lt;/a&gt; or &lt;a href=&#34;&#34;&gt;github&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
