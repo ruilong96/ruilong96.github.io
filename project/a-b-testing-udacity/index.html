@@ -1,0 +1,1437 @@
+<!DOCTYPE html><html lang="en-us" >
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  
+  
+  
+  <meta name="generator" content="Wowchemy 5.0.0-beta.0 for Hugo">
+  
+
+  
+
+  
+  
+
+  
+  
+  
+  
+  
+    
+    
+    
+  
+  
+
+  <meta name="author" content="Ruilong Zhuang">
+
+  
+  
+  
+    
+  
+  <meta name="description" content="Final Project from Udacity A/B testing by Google: This report includes Design, Validation, Analysis &amp; Recommendation Using Python">
+
+  
+  <link rel="alternate" hreflang="en-us" href="https://ruilong96.github.io/project/a-b-testing-udacity/">
+
+  
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  
+
+  
+  
+  
+  <meta name="theme-color" content="#2962ff">
+  
+
+  
+  
+  
+  <script src="/js/mathjax-config.js"></script>
+  
+
+  
+  
+  
+  
+    
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha256-FMvZuGapsJLjouA6k7Eo2lusoAX9i0ShlWFG6qt7SLc=" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha256-Vzbj7sDDS/woiFS3uNKo8eIuni59rjyNGtXfstRzStA=" crossorigin="anonymous">
+
+    
+    
+    
+      
+    
+    
+      
+      
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-light">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/styles/github.min.css" crossorigin="anonymous" title="hl-dark" disabled>
+      
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" integrity="sha512-1xoFisiGdy9nvho8EgXuXvnpR5GAMSjFwp40gSRE3NwdUdIMIKuPa7bqoUhLD0O/5tPNhteAsE5XyyMi5reQVA==" crossorigin="anonymous">
+    
+
+    
+
+    
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.2.2/lazysizes.min.js" integrity="sha512-TmDwFLhg3UA4ZG0Eb4MIyT1O1Mb+Oww5kFG0uHqXsdbyZz9DcvYQhKpGgNkamAI6h2lGGZq2X8ftOJvF/XjTUg==" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" integrity="" crossorigin="anonymous" async></script>
+      
+    
+      
+
+      
+      
+
+      
+    
+      
+
+      
+      
+
+      
+    
+
+  
+
+  
+  
+  
+    
+      
+      
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700%7CRoboto:400,400italic,700%7CRoboto+Mono&display=swap">
+    
+  
+
+  
+  
+  
+  
+  <link rel="stylesheet" href="/css/wowchemy.css">
+
+  
+
+
+
+
+  
+
+  
+
+
+  
+  
+
+  
+
+  <link rel="manifest" href="/index.webmanifest">
+  <link rel="icon" type="image/png" href="/images/icon_hu86e6d267adcc07f71708eaee974e698b_28616_32x32_fill_lanczos_center_2.png">
+  <link rel="apple-touch-icon" type="image/png" href="/images/icon_hu86e6d267adcc07f71708eaee974e698b_28616_192x192_fill_lanczos_center_2.png">
+
+  <link rel="canonical" href="https://ruilong96.github.io/project/a-b-testing-udacity/">
+
+  
+  
+  
+  
+  
+  
+  
+    
+  
+  
+  <meta property="twitter:card" content="summary_large_image">
+  
+  <meta property="og:site_name" content="Ruilong Zhuang">
+  <meta property="og:url" content="https://ruilong96.github.io/project/a-b-testing-udacity/">
+  <meta property="og:title" content="A/B Testing Experiment — A Udacity Course Final Project | Ruilong Zhuang">
+  <meta property="og:description" content="Final Project from Udacity A/B testing by Google: This report includes Design, Validation, Analysis &amp; Recommendation Using Python"><meta property="og:image" content="https://ruilong96.github.io/project/a-b-testing-udacity/featured.jpg">
+  <meta property="twitter:image" content="https://ruilong96.github.io/project/a-b-testing-udacity/featured.jpg"><meta property="og:locale" content="en-us">
+  
+    
+      <meta property="article:published_time" content="2020-11-18T18:57:17-05:00">
+    
+    <meta property="article:modified_time" content="2020-11-18T18:57:17-05:00">
+  
+
+  
+
+
+    
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ruilong96.github.io/project/a-b-testing-udacity/"
+  },
+  "headline": "A/B Testing Experiment — A Udacity Course Final Project",
+  
+  "image": [
+    "https://ruilong96.github.io/project/a-b-testing-udacity/featured.jpg"
+  ],
+  
+  "datePublished": "2020-11-18T18:57:17-05:00",
+  "dateModified": "2020-11-18T18:57:17-05:00",
+  
+  "author": {
+    "@type": "Person",
+    "name": "Ruilong Zhuang"
+  },
+  
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ruilong Zhuang",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://ruilong96.github.io/images/icon_hu86e6d267adcc07f71708eaee974e698b_28616_192x192_fill_lanczos_center_2.png"
+    }
+  },
+  "description": "Final Project from Udacity A/B testing by Google: This report includes Design, Validation, Analysis \u0026 Recommendation Using Python"
+}
+</script>
+
+  
+
+  
+
+
+  
+
+
+  
+
+
+
+
+
+  <title>A/B Testing Experiment — A Udacity Course Final Project | Ruilong Zhuang</title>
+
+</head>
+
+
+<body id="top" data-spy="scroll" data-offset="70" data-target="#TableOfContents" class="page-wrapper  ">
+
+  
+  
+  
+    <script>window.wcDarkLightEnabled = true;</script>
+  
+  
+    <script>const isSiteThemeDark = false;</script>
+  
+  
+  <script src="/js/load-theme.js"></script>
+
+  <aside class="search-results" id="search">
+  <div class="container">
+    <section class="search-header">
+
+      <div class="row no-gutters justify-content-between mb-3">
+        <div class="col-6">
+          <h1>Search</h1>
+        </div>
+        <div class="col-6 col-search-close">
+          <a class="js-search" href="#"><i class="fas fa-times-circle text-muted" aria-hidden="true"></i></a>
+        </div>
+      </div>
+
+      <div id="search-box">
+        
+        <input name="q" id="search-query" placeholder="Search..." autocapitalize="off"
+        autocomplete="off" autocorrect="off" spellcheck="false" type="search" class="form-control">
+        
+      </div>
+
+    </section>
+    <section class="section-search-results">
+
+      <div id="search-hits">
+        
+      </div>
+
+    </section>
+  </div>
+</aside>
+
+
+  <div class="page-header">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-light compensate-for-scrollbar" id="navbar-main">
+  <div class="container">
+
+    
+    <div class="d-none d-lg-inline-flex">
+      <a class="navbar-brand" href="/">Ruilong Zhuang</a>
+    </div>
+    
+
+    
+    <button type="button" class="navbar-toggler" data-toggle="collapse"
+            data-target="#navbar-content" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
+    <span><i class="fas fa-bars"></i></span>
+    </button>
+    
+
+    
+    <div class="navbar-brand-mobile-wrapper d-inline-flex d-lg-none">
+      <a class="navbar-brand" href="/">Ruilong Zhuang</a>
+    </div>
+    
+
+    
+    
+    <div class="navbar-collapse main-menu-item collapse justify-content-start" id="navbar-content">
+
+      
+      <ul class="navbar-nav d-md-inline-flex">
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#about"><span>Home</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#topics"><span>Topics</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#projects"><span>Projects</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#accomplishments"><span>Accomplishments</span></a>
+        </li>
+
+        
+        
+
+        
+
+        
+        
+        
+          
+        
+
+        
+
+        
+        
+        
+        
+
+        
+          
+            
+            
+          
+          
+            
+            
+            
+              
+            
+            
+          
+        
+
+        <li class="nav-item">
+          <a class="nav-link " href="/#contact"><span>Contact</span></a>
+        </li>
+
+        
+        
+
+      
+
+        
+      </ul>
+    </div>
+
+    <ul class="nav-icons navbar-nav flex-row ml-auto d-flex pl-md-2">
+      
+      
+      <li class="nav-item">
+        <a class="nav-link js-search" href="#" aria-label="Search"><i class="fas fa-search" aria-hidden="true"></i></a>
+      </li>
+      
+
+      
+      
+      <li class="nav-item dropdown theme-dropdown">
+        <a href="#" class="nav-link" data-toggle="dropdown" aria-haspopup="true">
+          <i class="fas fa-moon" aria-hidden="true"></i>
+        </a>
+        <div class="dropdown-menu">
+          <a href="#" class="dropdown-item js-set-theme-light">
+            <span>Light</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-dark">
+            <span>Dark</span>
+          </a>
+          <a href="#" class="dropdown-item js-set-theme-auto">
+            <span>Automatic</span>
+          </a>
+        </div>
+      </li>
+      
+
+      
+
+    </ul>
+
+  </div>
+</nav>
+
+
+  </div>
+
+  <div class="page-body">
+    <article class="article article-project">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+
+<div class="article-container pt-3">
+  <h1>A/B Testing Experiment — A Udacity Course Final Project</h1>
+
+  
+
+  
+
+
+<div class="article-metadata">
+
+  
+  
+  
+  
+  <div>
+    
+
+  
+  <span ><a href="/author/ruilong-zhuang/">Ruilong Zhuang</a></span>
+  </div>
+  
+  
+
+  
+  <span class="article-date">
+    
+    
+      
+    
+    Nov 18, 2020
+  </span>
+  
+
+  
+
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+
+</div>
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 480px;">
+  <div style="position: relative">
+    <img src="/project/a-b-testing-udacity/featured_hu02f9f96bfd01a365a6237977bcd727de_3081091_720x0_resize_q75_lanczos.jpg" alt="" class="featured-image">
+    
+  </div>
+</div>
+
+
+
+  <div class="article-container">
+
+    <div class="article-style">
+      <h1 id="experiment-overview-free-trial-screener">Experiment Overview: Free Trial Screener</h1>
+<p>At the time of this experiment, Udacity courses currently have two options on the course overview page: &ldquo;start free trial&rdquo;, and &ldquo;access course materials&rdquo;. If the student clicks &ldquo;start free trial&rdquo;, they will be asked to enter their credit card information, and then they will be enrolled in a free trial for the paid version of the course. After 14 days, they will automatically be charged unless they cancel first. If the student clicks &ldquo;access course materials&rdquo;, they will be able to view the videos and take the quizzes for free, but they will not receive coaching support or a verified certificate, and they will not submit their final project for feedback.</p>
+<p>In the experiment, Udacity tested a change where if the student clicked &ldquo;start free trial&rdquo;, they were asked how much time they had available to devote to the course. If the student indicated 5 or more hours per week, they would be taken through the checkout process as usual. If they indicated fewer than 5 hours per week, a message would appear indicating that Udacity courses usually require a greater time commitment for successful completion, and suggesting that the student might like to access the course materials for free. At this point, the student would have the option to continue enrolling in the free trial, or access the course materials for free instead. This screenshot shows what the experiment looks like.</p>
+<h1 id="experiment-setup">Experiment Setup</h1>
+<p>The <strong>hypothesis</strong> was that this might set clearer expectations for students upfront, thus reducing the number of frustrated students who left the free trial because they didn&rsquo;t have enough time—without significantly reducing the number of students to continue past the free trial and eventually complete the course. If this hypothesis held true, Udacity could improve the overall student experience and improve coaches' capacity to support students who are likely to complete the course.</p>
+<p><strong>Null Hypothesis:</strong>  No significant change and  ineffective in reducing the early Udacity course cancellation.</p>
+<p><strong>Alternative Hypothesis:</strong> This reduces the number of frustrated students who left the free trial.</p>
+<p>The <strong>unit of diversion is a cookie</strong>, although if the student enrolls in the free trial, they are tracked by user-id from that point forward. The same user-id cannot enroll in the free trial twice. For users that do not enroll, their user-id is not tracked in the experiment, even if they were signed in when they visited the course overview page.</p>
+<h1 id="experiment-design">Experiment Design</h1>
+<h2 id="metric-choice">Metric Choice</h2>
+<p>First, we need to pick <strong>Invariant metrics</strong>. Invariant metrics are the ones used for sanity checks and will remain stable throughout the experiment. In our case,</p>
+<ul>
+<li>
+<p><strong>Number of cookies</strong>: That is, number of unique cookies to view the course overview page.</p>
+</li>
+<li>
+<p><strong>Number of clicks</strong>: That is, the number of unique cookies to click the “Start free trial” button (which happens before the free trial screener is a trigger).</p>
+</li>
+<li>
+<p><strong>Click-through-probability</strong>: That is, number of unique cookies to click the “Start free trial” button divided by number of unique cookies to view the course overview page.</p>
+</li>
+</ul>
+<p>Then, we have to set up <strong>Evaluation Metrics</strong>. Evaluation metrics are the ones that we care about, the metrics that must be observed for consideration in the decision to launch the experiment. In our experiment, we have</p>
+<ul>
+<li>
+<p><strong>Gross conversion:</strong> That is, the number of user-ids to complete checkout and enroll in the free trial divided by the number of unique cookies to click the “Start free trial” button. (dmin= 0.01)</p>
+</li>
+<li>
+<p><strong>Retention:</strong> That is, the number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by number of user-ids to complete checkout. (dmin=0.01)</p>
+</li>
+<li>
+<p><strong>Net conversion:</strong> That is, number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by the number of unique cookies to click the “Start free trial” button. (dmin= 0.0075)</p>
+</li>
+</ul>
+<h2 id="measure-variability">Measure Variability</h2>
+<p>Before we dive into experiment design, we need to have a sense about the variability of both of the invariant metrics and evaluation metrics. Udacity provided the baseline values for each metric:</p>
+<p><img src="./baseline-rate.png" alt="Image for post"></p>
+<p>The standard deviation is calculated given a sample size of 5000 cookies visiting the course overview page.</p>
+<pre><code class="language-python">from math import sqrt
+n_pageviews=40000
+n_clicks=3200
+n_enroll=660
+ctp=0.08
+n_sample=5000
+
+click_through_probability=0.08 #clicks / pageviews
+gross_conversion=0.20625 # enroll / click
+retention=0.53 # payment / enroll
+net_conversion=0.1093125 # payment / click
+
+&quot;&quot;&quot;analytical standard deviation estimate&quot;&quot;&quot;
+# gross_conversion
+std_gross_conversion=sqrt(gross_conversion*(1-gross_conversion)/(n_clicks/n_pageviews*n_sample))
+# retention
+std_retention=sqrt(retention*(1-retention)/(n_enroll/n_pageviews*n_sample))
+# net_conversion
+std_net_conversion=sqrt(net_conversion*(1-net_conversion)/(n_clicks/n_pageviews*n_sample))
+print(&quot;SD of gross conversion(clicks): {:.4} &quot;.format(std_gross_conversion))
+print(&quot;SD of Retention(enroll): {:.4} &quot;.format(std_retention))
+print(&quot;SD of Net Conversion(clicks): {:.4}&quot;.format(std_net_conversion))
+</code></pre>
+<pre><code class="language-plain">SD of gross conversion(clicks): 0.02023 
+SD of Retention(enroll): 0.05495 
+SD of Net Conversion(clicks): 0.0156
+</code></pre>
+<h2 id="determine-the-sample-size">Determine the sample size</h2>
+<p>It is very important to figure out the sample size in order to achieve enough statistical significance and power in our analysis based on our assumptions and goals. In our cases, we choose $\alpha$ = 0.05 and $\beta$ = 0.2 to calculate the sample size for the selected evaluation metrics. There are two approaches to determine the experiment sample size <a href="https://www.kaggle.com/mariusmesserschmied/udacity-a-b-testing-final-course-project" target="_blank" rel="noopener">Learned from here</a>:</p>
+<p><strong>Approach A:</strong></p>
+<p>If we assume that the standard deviations of the population proportion and the sample proportion are equal and that also the sample sizes of treatment and control group are the same, then the required experiment sample size per group can be determined through (as outlined <a href="http://vanbelle.org/chapters%5cwebchapter2.pdf" target="_blank" rel="noopener">here</a>):</p>
+<p>$$n=2(z_{1−α/2}+z_{1−β})^2∗ \frac{σ^2}{d_{min}^2}$$</p>
+<p>with $σ=SE * \sqrt{n}$ ,whereby here n is the sample size we used to calculate SE earlier.</p>
+<p><strong>Approach B:</strong></p>
+<p>If we do not assume common standard deviations then a more precise way to determine the required sample size would be (as outlined <a href="http://vanbelle.org/chapters%5cwebchapter2.pdf" target="_blank" rel="noopener">here</a>). This is also the approach used by many online sample size calculators such as the one by <a href="https://www.evanmiller.org/ab-testing/sample-size.html" target="_blank" rel="noopener">Evan Miller </a>and we will apply it in the following.</p>
+<pre><code class="language-python">def get_sampleSize (alpha, beta, p, dmin):
+    '''Return sample size given alpha, beta, p and dmin'''
+    return (pow((stats.norm.ppf(1-alpha/2)*(2*p*(1-p))**0.5+stats.norm.ppf(1-beta)*(p*(1-p)+(p+dmin)*(1-(p+dmin)))**0.5),2))/(pow(dmin,2))
+</code></pre>
+<pre><code class="language-python">print(get_sampleSize(0.05, 0.2, gross_conversion, 0.01))
+print(get_sampleSize(0.05, 0.2, retention, 0.01))
+print(get_sampleSize(0.05, 0.2, net_conversion, 0.0075))
+</code></pre>
+<p>Here are the result:</p>
+<p>Clicks for Gross Conversion = 25835</p>
+<p>Clicks for Retention = 39115</p>
+<p>Clicks for Net Conversion = 27413</p>
+<p>Because we are having two groups, control and experiment groups in our experiment, therefore the pageview required for each metric are:</p>
+<p>Gross Conversion = (28835*2)/0.08 = 645875</p>
+<p>Retention = (39115*2)/(660/40000) = 4741212</p>
+<p>Net Conversion = (27413*2)/0.08 = 685325</p>
+<p>If we want to test out all of the three metrics, the sample size for the number of pageviews is the maximum 4741212.</p>
+<h2 id="choosing-experiment-duration-and-exposure">Choosing experiment duration and exposure</h2>
+<p>Some Udacity questions on this part is as follows:  What percentage of Udacity’s traffic would you divert to this experiment (assuming there were no other experiments you wanted to run simultaneously)? Is the change risky enough that you wouldn’t want to run on all traffic?</p>
+<p>Given the percentage you chose, how long would the experiment take to run, using the analytic estimates of variance? If the answer is longer than a few weeks, then this is unreasonably long, and you should reconsider an earlier decision.</p>
+<p>Based on the description of the project, this feature change is not risky in term of the content and the ways for students accessing the content. It simply add one more question before the student accessing the course materials. Therefore, probably we can run on all the traffic if necessary.</p>
+<p>Based on the sample size we need for each metrics, we need 4741212 pageviews in total, and it take around 119 days to run the experiment if we divert all the pageviews given 40000 pageviews a day. Apparently, the experiment takes too long and costly, so we should reconsider the decision about the metric we choose. We can choose the second largest sample size, 685325, to test out Gross Conversion and Net Conversion. In this case, it takes 17 days if we use all of the traffic or it takes 21 days if we use 80% of the traffic.</p>
+<h1 id="experiment-analysis">Experiment Analysis</h1>
+<h2 id="sanity-check">Sanity Check</h2>
+<p>In our experiment, we need to make sure some invariant metrics stay the same throughout the experiment, and this is one of the ways to make sure our experiment is executed as we designed and expected. We expect that the total number of pageviews in the control group and the experiment group each account for 50% of the total number of pageviews diverted by cookies.</p>
+<p>The first step of the sanity check for pageviews and clicks is to calculate the probability for the control group and the experiment group.</p>
+<pre><code class="language-python"># pageviews
+sum_pv_cont= df['pageviews_control'].sum()
+sum_pv_exp= df['pageviews_exp'].sum()
+SD_pageviews= sqrt(0.5*0.5/(sum_pv_cont+sum_pv_exp))
+m=1.96*SD_pageviews
+ci_lower,ci_upper=0.5-m,0.5+m
+print(&quot;Confidence Interval for pageviews: [{:.4},{:.4}]&quot;.format(ci_lower,ci_upper))
+print(&quot;Observed: {:.4}&quot;.format(sum_pv_cont/(sum_pv_exp+sum_pv_cont)))
+</code></pre>
+<p><u>(check out more code in the following attachment)</u></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Pageviews</th>
+<th>Clicks</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Probability = # Control / # Total</td>
+<td>0.5006</td>
+<td>0.5005</td>
+</tr>
+<tr>
+<td>Standard Error = 1.96*SE ($\alpha$=0.05)</td>
+<td>0.0006</td>
+<td>0.0041</td>
+</tr>
+<tr>
+<td>Lower bound</td>
+<td>0.4988</td>
+<td>0.4959</td>
+</tr>
+<tr>
+<td>Upper bound</td>
+<td>0.5012</td>
+<td>0.5041</td>
+</tr>
+<tr>
+<td>Significance</td>
+<td>False</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<p>Since the probability for both Pageviews and Click falls within the confidence interval calculated from the binomial distribution, we believe that these two invariant metrics pass the sanity check.</p>
+<p>From Click Through probability, we expect that the difference between two groups be zero, so we will use pooled statistics to do the sanity check.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Click Through Probability</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$\hat{d}$</td>
+<td>0.00005</td>
+</tr>
+<tr>
+<td>SE_Pool_p</td>
+<td>0.00066</td>
+</tr>
+<tr>
+<td>Lower bound</td>
+<td>-0.00129</td>
+</tr>
+<tr>
+<td>Upper bound</td>
+<td>0.00129</td>
+</tr>
+</tbody>
+</table>
+<p>Since the observed different $\hat{d}$ falls in the confidence interval, the Click Through Probability passes the sanity test.</p>
+<h2 id="effect-size-tests">Effect size tests</h2>
+<p>The focus here is to find out whether our evaluation metrics are statistically and practically significant. It can be achieved by calculating the confidence interval for the difference between the control and experiment groups.</p>
+<p>Just a quick recap: A metric is <strong>statistically significant</strong> if the confidence interval does not include 0 (that is, you can be confident there was a change), and it is <strong>practically significant</strong> if the confidence interval does not include the practical thresholds we set at the beginning (that is, you can be confident there is a change that matters to the business.)</p>
+<p>With the power of the size of the sample we have, we can evaluate the Gross Conversion and Net Conversion for our last piece.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Gross Conversion</th>
+<th>Net Conversion</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dmin</td>
+<td>0.01</td>
+<td>0.0075</td>
+</tr>
+<tr>
+<td>Observed Difference</td>
+<td>-0.0205</td>
+<td>-0.0048</td>
+</tr>
+<tr>
+<td>CI lower bound</td>
+<td>-0.0291</td>
+<td>-0.0116</td>
+</tr>
+<tr>
+<td>CI upper bound</td>
+<td>-0.012</td>
+<td>0.019</td>
+</tr>
+<tr>
+<td>Statistically significance</td>
+<td>True</td>
+<td>False</td>
+</tr>
+<tr>
+<td>Practically significance</td>
+<td>True</td>
+<td>False</td>
+</tr>
+</tbody>
+</table>
+<p>For Net Conversion, the difference between control and experiment groups is insignificant. The confidence interval include both 0 and negative dmin. For Gross Conversion, the confidence interval does not include 0 or practical significance, therefore it is both statistically and practically significant.</p>
+<h2 id="sign-test">Sign test</h2>
+<p>The sign test is to check whether the signs of the difference of the metrics between the experiment and control groups agree with the confidence interval of the difference. The p-value indicates the likelihood that the result of the signs is happen by chance using binomial distribution.</p>
+<p>As our code indicates, Gross Conversion has a statistically significant result from the sign test, and Net conversion does not have the same result.</p>
+<h1 id="recommendation">Recommendation</h1>
+<p>The goal of this experiment is designed to understand whether the screen will filter the students who cannot commit themselves to finish the courses at the end, and thus help to reduce the number of students who left the free trial, while not reducing the number of students who will make the payment after completing their free trial. Our experiment show that Gross Conversion will be reduced significantly, and the Net Conversion rate has no significant change. Therefore, the screener will help to reduce the students who start the free trial, but there is not enough evidence to show that there will be more students who make the payments and continue their courses. Thus, I would not recommend Launching this screener.</p>
+<p><strong>See implementation</strong>(<a href="./a-b-testing-python-implement-final-project.ipynb">code</a>, <a href="./a-b-testing-python-implement-final-project.html">html</a>)</p>
+
+    </div>
+
+    
+
+
+
+
+
+
+
+
+<div class="share-box" aria-hidden="true">
+  <ul class="share">
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://twitter.com/intent/tweet?url=https://ruilong96.github.io/project/a-b-testing-udacity/&amp;text=A/B%20Testing%20Experiment%20%e2%80%94%20A%20Udacity%20Course%20Final%20Project" target="_blank" rel="noopener" class="share-btn-twitter">
+          <i class="fab fa-twitter"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.facebook.com/sharer.php?u=https://ruilong96.github.io/project/a-b-testing-udacity/&amp;t=A/B%20Testing%20Experiment%20%e2%80%94%20A%20Udacity%20Course%20Final%20Project" target="_blank" rel="noopener" class="share-btn-facebook">
+          <i class="fab fa-facebook"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="mailto:?subject=A/B%20Testing%20Experiment%20%e2%80%94%20A%20Udacity%20Course%20Final%20Project&amp;body=https://ruilong96.github.io/project/a-b-testing-udacity/" target="_blank" rel="noopener" class="share-btn-email">
+          <i class="fas fa-envelope"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://www.linkedin.com/shareArticle?url=https://ruilong96.github.io/project/a-b-testing-udacity/&amp;title=A/B%20Testing%20Experiment%20%e2%80%94%20A%20Udacity%20Course%20Final%20Project" target="_blank" rel="noopener" class="share-btn-linkedin">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="whatsapp://send?text=A/B%20Testing%20Experiment%20%e2%80%94%20A%20Udacity%20Course%20Final%20Project%20https://ruilong96.github.io/project/a-b-testing-udacity/" target="_blank" rel="noopener" class="share-btn-whatsapp">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+      </li>
+    
+      
+      
+      
+        
+      
+      
+      
+      <li>
+        <a href="https://service.weibo.com/share/share.php?url=https://ruilong96.github.io/project/a-b-testing-udacity/&amp;title=A/B%20Testing%20Experiment%20%e2%80%94%20A%20Udacity%20Course%20Final%20Project" target="_blank" rel="noopener" class="share-btn-weibo">
+          <i class="fab fa-weibo"></i>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+
+
+
+  
+  
+  
+    
+  
+  
+  
+  <div class="media author-card content-widget-hr">
+    
+      
+      <a href="https://ruilong96.github.io/"><img class="avatar mr-3 avatar-circle" src="/author/ruilong-zhuang/avatar_hu0f32b81e8c1d2841cc8287aa23c11200_2384246_270x270_fill_q75_lanczos_center.JPG" alt="Ruilong Zhuang"></a>
+    
+
+    <div class="media-body">
+      <h5 class="card-title"><a href="https://ruilong96.github.io/">Ruilong Zhuang</a></h5>
+      <h6 class="card-subtitle">Graduate Student in Operations Research</h6>
+      <p class="card-text">An Aspiring Data Scientist</p>
+      <ul class="network-icon" aria-hidden="true">
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="/#contact" >
+        <i class="fas fa-envelope"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://github.com/ruilong96" target="_blank" rel="noopener">
+        <i class="fab fa-github"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://www.linkedin.com/in/ruilongzhuang/" target="_blank" rel="noopener">
+        <i class="fab fa-linkedin"></i>
+      </a>
+    </li>
+  
+    
+    
+    
+      
+    
+    
+    
+    
+    
+      
+    
+    <li>
+      <a href="https://public.tableau.com/profile/ruilong.zhuang#!/" target="_blank" rel="noopener">
+        <i class="fas fa-table"></i>
+      </a>
+    </li>
+  
+</ul>
+
+    </div>
+  </div>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+    <div class="project-related-pages content-widget-hr">
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+
+      
+      
+      
+    </div>
+  </div>
+</article>
+  </div>
+
+  <div class="page-footer">
+    
+    
+    <div class="container">
+      <footer class="site-footer">
+  
+
+  <p class="powered-by">
+    ©2020 Ruilong Zhuang
+  </p>
+
+  
+  
+
+
+
+
+
+
+  <p class="powered-by">
+    
+    
+    
+    Published with
+    <a href="https://wowchemy.com" target="_blank" rel="noopener">Wowchemy</a>  —
+    the free, <a href="https://github.com/wowchemy/wowchemy-hugo-modules" target="_blank" rel="noopener">
+    open source</a> website builder that empowers creators.
+    
+  </p>
+</footer>
+
+    </div>
+    
+  </div>
+
+  
+<div id="modal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Cite</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <pre><code class="tex hljs"></code></pre>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-outline-primary my-1 js-copy-cite" href="#" target="_blank">
+          <i class="fas fa-copy"></i> Copy
+        </a>
+        <a class="btn btn-outline-primary my-1 js-download-cite" href="#" target="_blank">
+          <i class="fas fa-download"></i> Download
+        </a>
+        <div id="modal-error"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+      
+
+    
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+      
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.imagesloaded/4.1.4/imagesloaded.pkgd.min.js" integrity="sha256-lqvxZrPLtfffUl2G/e7szqSvPBILGbwmsGE1MKlOi0Q=" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js" integrity="sha256-CBrpuqrMhXwcLLUd5tvQ4euBHCdh7wGlDfNz8vbu/iI=" crossorigin="anonymous"></script>
+      
+
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha256-yt2kYMy0w8AbtF89WXb2P1rfjcP/HTHLT7097U8Y5b8=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/instant.page/5.1.0/instantpage.min.js" integrity="sha512-1+qUtKoh9XZW7j+6LhRMAyOrgSQKenQ4mluTR+cvxXjP1Z54RxZuzstR/H9kgPXQsVB8IW7DMDFUJpzLjvhGSQ==" crossorigin="anonymous"></script>
+
+      
+
+      
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/highlight.min.js" integrity="sha512-TDKKr+IvoqZnPzc3l35hdjpHD0m+b2EC2SrLEgKDRWpxf2rFCxemkgvJ5kfU48ip+Y+m2XVKyOCD85ybtlZDmw==" crossorigin="anonymous"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/r.min.js"></script>
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.2.0/languages/python.min.js"></script>
+        
+      
+
+    
+
+    
+    
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js" integrity="sha512-SeiQaaDh73yrb56sTW/RgVdi/mMqNeM2oBwubFHagc5BkixSpP1fvqF47mKzPGWYSSy4RwbBunrJBQ4Co8fRWA==" crossorigin="anonymous"></script>
+    
+
+    
+    
+    <script>const code_highlighting = true;</script>
+    
+
+    
+    
+    
+    
+    
+    
+    <script>
+      const search_config = {"indexURI":"/index.json","minLength":1,"threshold":0.3};
+      const i18n = {"no_results":"No results found","placeholder":"Search...","results":"results found"};
+      const content_type = {
+        'post': "Posts",
+        'project': "Projects",
+        'publication' : "Publications",
+        'talk' : "Talks",
+        'slides' : "Slides"
+        };
+    </script>
+    
+
+    
+    
+
+    
+    
+    <script id="search-hit-fuse-template" type="text/x-template">
+      <div class="search-hit" id="summary-{{key}}">
+      <div class="search-hit-content">
+        <div class="search-hit-name">
+          <a href="{{relpermalink}}">{{title}}</a>
+          <div class="article-metadata search-hit-type">{{type}}</div>
+          <p class="search-hit-description">{{snippet}}</p>
+        </div>
+      </div>
+      </div>
+    </script>
+    
+
+    
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.1/fuse.min.js" integrity="sha256-VzgmKYmhsGNNN4Ph1kMW+BjoYJM2jV5i4IlFoeZA9XI=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+    
+
+    
+    
+
+    
+    
+    
+
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+      
+    
+    
+    
+    
+    <script src="/js/wowchemy.min.d9d80f811e95b4b4f6df1eaaf297b05f.js"></script>
+
+    
+
+
+
+
+
+
+</body>
+</html>

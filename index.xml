@@ -5,12 +5,246 @@
     <link>https://ruilong96.github.io/</link>
       <atom:link href="https://ruilong96.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Ruilong Zhuang</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 Ruilong Zhuang</copyright><lastBuildDate>Fri, 13 Nov 2020 16:35:20 -0500</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 Ruilong Zhuang</copyright><lastBuildDate>Wed, 18 Nov 2020 18:57:17 -0500</lastBuildDate>
     <image>
       <url>https://ruilong96.github.io/images/icon_hu86e6d267adcc07f71708eaee974e698b_28616_512x512_fill_lanczos_center_2.png</url>
       <title>Ruilong Zhuang</title>
       <link>https://ruilong96.github.io/</link>
     </image>
+    
+    <item>
+      <title>A/B Testing Experiment — A Udacity Course Final Project</title>
+      <link>https://ruilong96.github.io/project/a-b-testing-udacity/</link>
+      <pubDate>Wed, 18 Nov 2020 18:57:17 -0500</pubDate>
+      <guid>https://ruilong96.github.io/project/a-b-testing-udacity/</guid>
+      <description>&lt;h1 id=&#34;experiment-overview-free-trial-screener&#34;&gt;Experiment Overview: Free Trial Screener&lt;/h1&gt;
+&lt;p&gt;At the time of this experiment, Udacity courses currently have two options on the course overview page: &amp;ldquo;start free trial&amp;rdquo;, and &amp;ldquo;access course materials&amp;rdquo;. If the student clicks &amp;ldquo;start free trial&amp;rdquo;, they will be asked to enter their credit card information, and then they will be enrolled in a free trial for the paid version of the course. After 14 days, they will automatically be charged unless they cancel first. If the student clicks &amp;ldquo;access course materials&amp;rdquo;, they will be able to view the videos and take the quizzes for free, but they will not receive coaching support or a verified certificate, and they will not submit their final project for feedback.&lt;/p&gt;
+&lt;p&gt;In the experiment, Udacity tested a change where if the student clicked &amp;ldquo;start free trial&amp;rdquo;, they were asked how much time they had available to devote to the course. If the student indicated 5 or more hours per week, they would be taken through the checkout process as usual. If they indicated fewer than 5 hours per week, a message would appear indicating that Udacity courses usually require a greater time commitment for successful completion, and suggesting that the student might like to access the course materials for free. At this point, the student would have the option to continue enrolling in the free trial, or access the course materials for free instead. This screenshot shows what the experiment looks like.&lt;/p&gt;
+&lt;h1 id=&#34;experiment-setup&#34;&gt;Experiment Setup&lt;/h1&gt;
+&lt;p&gt;The &lt;strong&gt;hypothesis&lt;/strong&gt; was that this might set clearer expectations for students upfront, thus reducing the number of frustrated students who left the free trial because they didn&amp;rsquo;t have enough time—without significantly reducing the number of students to continue past the free trial and eventually complete the course. If this hypothesis held true, Udacity could improve the overall student experience and improve coaches&#39; capacity to support students who are likely to complete the course.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Null Hypothesis:&lt;/strong&gt;  No significant change and  ineffective in reducing the early Udacity course cancellation.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Alternative Hypothesis:&lt;/strong&gt; This reduces the number of frustrated students who left the free trial.&lt;/p&gt;
+&lt;p&gt;The &lt;strong&gt;unit of diversion is a cookie&lt;/strong&gt;, although if the student enrolls in the free trial, they are tracked by user-id from that point forward. The same user-id cannot enroll in the free trial twice. For users that do not enroll, their user-id is not tracked in the experiment, even if they were signed in when they visited the course overview page.&lt;/p&gt;
+&lt;h1 id=&#34;experiment-design&#34;&gt;Experiment Design&lt;/h1&gt;
+&lt;h2 id=&#34;metric-choice&#34;&gt;Metric Choice&lt;/h2&gt;
+&lt;p&gt;First, we need to pick &lt;strong&gt;Invariant metrics&lt;/strong&gt;. Invariant metrics are the ones used for sanity checks and will remain stable throughout the experiment. In our case,&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Number of cookies&lt;/strong&gt;: That is, number of unique cookies to view the course overview page.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Number of clicks&lt;/strong&gt;: That is, the number of unique cookies to click the “Start free trial” button (which happens before the free trial screener is a trigger).&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Click-through-probability&lt;/strong&gt;: That is, number of unique cookies to click the “Start free trial” button divided by number of unique cookies to view the course overview page.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Then, we have to set up &lt;strong&gt;Evaluation Metrics&lt;/strong&gt;. Evaluation metrics are the ones that we care about, the metrics that must be observed for consideration in the decision to launch the experiment. In our experiment, we have&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Gross conversion:&lt;/strong&gt; That is, the number of user-ids to complete checkout and enroll in the free trial divided by the number of unique cookies to click the “Start free trial” button. (dmin= 0.01)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Retention:&lt;/strong&gt; That is, the number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by number of user-ids to complete checkout. (dmin=0.01)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Net conversion:&lt;/strong&gt; That is, number of user-ids to remain enrolled past the 14-day boundary (and thus make at least one payment) divided by the number of unique cookies to click the “Start free trial” button. (dmin= 0.0075)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;measure-variability&#34;&gt;Measure Variability&lt;/h2&gt;
+&lt;p&gt;Before we dive into experiment design, we need to have a sense about the variability of both of the invariant metrics and evaluation metrics. Udacity provided the baseline values for each metric:&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./baseline-rate.png&#34; alt=&#34;Image for post&#34;&gt;&lt;/p&gt;
+&lt;p&gt;The standard deviation is calculated given a sample size of 5000 cookies visiting the course overview page.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from math import sqrt
+n_pageviews=40000
+n_clicks=3200
+n_enroll=660
+ctp=0.08
+n_sample=5000
+
+click_through_probability=0.08 #clicks / pageviews
+gross_conversion=0.20625 # enroll / click
+retention=0.53 # payment / enroll
+net_conversion=0.1093125 # payment / click
+
+&amp;quot;&amp;quot;&amp;quot;analytical standard deviation estimate&amp;quot;&amp;quot;&amp;quot;
+# gross_conversion
+std_gross_conversion=sqrt(gross_conversion*(1-gross_conversion)/(n_clicks/n_pageviews*n_sample))
+# retention
+std_retention=sqrt(retention*(1-retention)/(n_enroll/n_pageviews*n_sample))
+# net_conversion
+std_net_conversion=sqrt(net_conversion*(1-net_conversion)/(n_clicks/n_pageviews*n_sample))
+print(&amp;quot;SD of gross conversion(clicks): {:.4} &amp;quot;.format(std_gross_conversion))
+print(&amp;quot;SD of Retention(enroll): {:.4} &amp;quot;.format(std_retention))
+print(&amp;quot;SD of Net Conversion(clicks): {:.4}&amp;quot;.format(std_net_conversion))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-plain&#34;&gt;SD of gross conversion(clicks): 0.02023 
+SD of Retention(enroll): 0.05495 
+SD of Net Conversion(clicks): 0.0156
+&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;determine-the-sample-size&#34;&gt;Determine the sample size&lt;/h2&gt;
+&lt;p&gt;It is very important to figure out the sample size in order to achieve enough statistical significance and power in our analysis based on our assumptions and goals. In our cases, we choose $\alpha$ = 0.05 and $\beta$ = 0.2 to calculate the sample size for the selected evaluation metrics. There are two approaches to determine the experiment sample size &lt;a href=&#34;https://www.kaggle.com/mariusmesserschmied/udacity-a-b-testing-final-course-project&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Learned from here&lt;/a&gt;:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach A:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If we assume that the standard deviations of the population proportion and the sample proportion are equal and that also the sample sizes of treatment and control group are the same, then the required experiment sample size per group can be determined through (as outlined &lt;a href=&#34;http://vanbelle.org/chapters%5cwebchapter2.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;):&lt;/p&gt;
+&lt;p&gt;$$n=2(z_{1−α/2}+z_{1−β})^2∗ \frac{σ^2}{d_{min}^2}$$&lt;/p&gt;
+&lt;p&gt;with $σ=SE * \sqrt{n}$ ,whereby here n is the sample size we used to calculate SE earlier.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Approach B:&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;If we do not assume common standard deviations then a more precise way to determine the required sample size would be (as outlined &lt;a href=&#34;http://vanbelle.org/chapters%5cwebchapter2.pdf&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;). This is also the approach used by many online sample size calculators such as the one by &lt;a href=&#34;https://www.evanmiller.org/ab-testing/sample-size.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Evan Miller &lt;/a&gt;and we will apply it in the following.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def get_sampleSize (alpha, beta, p, dmin):
+    &#39;&#39;&#39;Return sample size given alpha, beta, p and dmin&#39;&#39;&#39;
+    return (pow((stats.norm.ppf(1-alpha/2)*(2*p*(1-p))**0.5+stats.norm.ppf(1-beta)*(p*(1-p)+(p+dmin)*(1-(p+dmin)))**0.5),2))/(pow(dmin,2))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(get_sampleSize(0.05, 0.2, gross_conversion, 0.01))
+print(get_sampleSize(0.05, 0.2, retention, 0.01))
+print(get_sampleSize(0.05, 0.2, net_conversion, 0.0075))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;Here are the result:&lt;/p&gt;
+&lt;p&gt;Clicks for Gross Conversion = 25835&lt;/p&gt;
+&lt;p&gt;Clicks for Retention = 39115&lt;/p&gt;
+&lt;p&gt;Clicks for Net Conversion = 27413&lt;/p&gt;
+&lt;p&gt;Because we are having two groups, control and experiment groups in our experiment, therefore the pageview required for each metric are:&lt;/p&gt;
+&lt;p&gt;Gross Conversion = (28835*2)/0.08 = 645875&lt;/p&gt;
+&lt;p&gt;Retention = (39115*2)/(660/40000) = 4741212&lt;/p&gt;
+&lt;p&gt;Net Conversion = (27413*2)/0.08 = 685325&lt;/p&gt;
+&lt;p&gt;If we want to test out all of the three metrics, the sample size for the number of pageviews is the maximum 4741212.&lt;/p&gt;
+&lt;h2 id=&#34;choosing-experiment-duration-and-exposure&#34;&gt;Choosing experiment duration and exposure&lt;/h2&gt;
+&lt;p&gt;Some Udacity questions on this part is as follows:  What percentage of Udacity’s traffic would you divert to this experiment (assuming there were no other experiments you wanted to run simultaneously)? Is the change risky enough that you wouldn’t want to run on all traffic?&lt;/p&gt;
+&lt;p&gt;Given the percentage you chose, how long would the experiment take to run, using the analytic estimates of variance? If the answer is longer than a few weeks, then this is unreasonably long, and you should reconsider an earlier decision.&lt;/p&gt;
+&lt;p&gt;Based on the description of the project, this feature change is not risky in term of the content and the ways for students accessing the content. It simply add one more question before the student accessing the course materials. Therefore, probably we can run on all the traffic if necessary.&lt;/p&gt;
+&lt;p&gt;Based on the sample size we need for each metrics, we need 4741212 pageviews in total, and it take around 119 days to run the experiment if we divert all the pageviews given 40000 pageviews a day. Apparently, the experiment takes too long and costly, so we should reconsider the decision about the metric we choose. We can choose the second largest sample size, 685325, to test out Gross Conversion and Net Conversion. In this case, it takes 17 days if we use all of the traffic or it takes 21 days if we use 80% of the traffic.&lt;/p&gt;
+&lt;h1 id=&#34;experiment-analysis&#34;&gt;Experiment Analysis&lt;/h1&gt;
+&lt;h2 id=&#34;sanity-check&#34;&gt;Sanity Check&lt;/h2&gt;
+&lt;p&gt;In our experiment, we need to make sure some invariant metrics stay the same throughout the experiment, and this is one of the ways to make sure our experiment is executed as we designed and expected. We expect that the total number of pageviews in the control group and the experiment group each account for 50% of the total number of pageviews diverted by cookies.&lt;/p&gt;
+&lt;p&gt;The first step of the sanity check for pageviews and clicks is to calculate the probability for the control group and the experiment group.&lt;/p&gt;
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;# pageviews
+sum_pv_cont= df[&#39;pageviews_control&#39;].sum()
+sum_pv_exp= df[&#39;pageviews_exp&#39;].sum()
+SD_pageviews= sqrt(0.5*0.5/(sum_pv_cont+sum_pv_exp))
+m=1.96*SD_pageviews
+ci_lower,ci_upper=0.5-m,0.5+m
+print(&amp;quot;Confidence Interval for pageviews: [{:.4},{:.4}]&amp;quot;.format(ci_lower,ci_upper))
+print(&amp;quot;Observed: {:.4}&amp;quot;.format(sum_pv_cont/(sum_pv_exp+sum_pv_cont)))
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;&lt;u&gt;(check out more code in the following attachment)&lt;/u&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Pageviews&lt;/th&gt;
+&lt;th&gt;Clicks&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;Probability = # Control / # Total&lt;/td&gt;
+&lt;td&gt;0.5006&lt;/td&gt;
+&lt;td&gt;0.5005&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Standard Error = 1.96*SE ($\alpha$=0.05)&lt;/td&gt;
+&lt;td&gt;0.0006&lt;/td&gt;
+&lt;td&gt;0.0041&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lower bound&lt;/td&gt;
+&lt;td&gt;0.4988&lt;/td&gt;
+&lt;td&gt;0.4959&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Upper bound&lt;/td&gt;
+&lt;td&gt;0.5012&lt;/td&gt;
+&lt;td&gt;0.5041&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Significance&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Since the probability for both Pageviews and Click falls within the confidence interval calculated from the binomial distribution, we believe that these two invariant metrics pass the sanity check.&lt;/p&gt;
+&lt;p&gt;From Click Through probability, we expect that the difference between two groups be zero, so we will use pooled statistics to do the sanity check.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Click Through Probability&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;$\hat{d}$&lt;/td&gt;
+&lt;td&gt;0.00005&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;SE_Pool_p&lt;/td&gt;
+&lt;td&gt;0.00066&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Lower bound&lt;/td&gt;
+&lt;td&gt;-0.00129&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Upper bound&lt;/td&gt;
+&lt;td&gt;0.00129&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;Since the observed different $\hat{d}$ falls in the confidence interval, the Click Through Probability passes the sanity test.&lt;/p&gt;
+&lt;h2 id=&#34;effect-size-tests&#34;&gt;Effect size tests&lt;/h2&gt;
+&lt;p&gt;The focus here is to find out whether our evaluation metrics are statistically and practically significant. It can be achieved by calculating the confidence interval for the difference between the control and experiment groups.&lt;/p&gt;
+&lt;p&gt;Just a quick recap: A metric is &lt;strong&gt;statistically significant&lt;/strong&gt; if the confidence interval does not include 0 (that is, you can be confident there was a change), and it is &lt;strong&gt;practically significant&lt;/strong&gt; if the confidence interval does not include the practical thresholds we set at the beginning (that is, you can be confident there is a change that matters to the business.)&lt;/p&gt;
+&lt;p&gt;With the power of the size of the sample we have, we can evaluate the Gross Conversion and Net Conversion for our last piece.&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;&lt;/th&gt;
+&lt;th&gt;Gross Conversion&lt;/th&gt;
+&lt;th&gt;Net Conversion&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;dmin&lt;/td&gt;
+&lt;td&gt;0.01&lt;/td&gt;
+&lt;td&gt;0.0075&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Observed Difference&lt;/td&gt;
+&lt;td&gt;-0.0205&lt;/td&gt;
+&lt;td&gt;-0.0048&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CI lower bound&lt;/td&gt;
+&lt;td&gt;-0.0291&lt;/td&gt;
+&lt;td&gt;-0.0116&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;CI upper bound&lt;/td&gt;
+&lt;td&gt;-0.012&lt;/td&gt;
+&lt;td&gt;0.019&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Statistically significance&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Practically significance&lt;/td&gt;
+&lt;td&gt;True&lt;/td&gt;
+&lt;td&gt;False&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;For Net Conversion, the difference between control and experiment groups is insignificant. The confidence interval include both 0 and negative dmin. For Gross Conversion, the confidence interval does not include 0 or practical significance, therefore it is both statistically and practically significant.&lt;/p&gt;
+&lt;h2 id=&#34;sign-test&#34;&gt;Sign test&lt;/h2&gt;
+&lt;p&gt;The sign test is to check whether the signs of the difference of the metrics between the experiment and control groups agree with the confidence interval of the difference. The p-value indicates the likelihood that the result of the signs is happen by chance using binomial distribution.&lt;/p&gt;
+&lt;p&gt;As our code indicates, Gross Conversion has a statistically significant result from the sign test, and Net conversion does not have the same result.&lt;/p&gt;
+&lt;h1 id=&#34;recommendation&#34;&gt;Recommendation&lt;/h1&gt;
+&lt;p&gt;The goal of this experiment is designed to understand whether the screen will filter the students who cannot commit themselves to finish the courses at the end, and thus help to reduce the number of students who left the free trial, while not reducing the number of students who will make the payment after completing their free trial. Our experiment show that Gross Conversion will be reduced significantly, and the Net Conversion rate has no significant change. Therefore, the screener will help to reduce the students who start the free trial, but there is not enough evidence to show that there will be more students who make the payments and continue their courses. Thus, I would not recommend Launching this screener.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;See implementation&lt;/strong&gt;(&lt;a href=&#34;./a-b-testing-python-implement-final-project.ipynb&#34;&gt;code&lt;/a&gt;, &lt;a href=&#34;./a-b-testing-python-implement-final-project.html&#34;&gt;html&lt;/a&gt;)&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Malaria Cell Image Detection</title>
