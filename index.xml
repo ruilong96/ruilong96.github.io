@@ -5,12 +5,76 @@
     <link>https://ruilong96.github.io/</link>
       <atom:link href="https://ruilong96.github.io/index.xml" rel="self" type="application/rss+xml" />
     <description>Ruilong Zhuang</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 Ruilong Zhuang</copyright><lastBuildDate>Wed, 18 Nov 2020 18:57:17 -0500</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><copyright>©2020 Ruilong Zhuang</copyright><lastBuildDate>Thu, 19 Nov 2020 09:19:49 -0500</lastBuildDate>
     <image>
       <url>https://ruilong96.github.io/images/icon_hu86e6d267adcc07f71708eaee974e698b_28616_512x512_fill_lanczos_center_2.png</url>
       <title>Ruilong Zhuang</title>
       <link>https://ruilong96.github.io/</link>
     </image>
+    
+    <item>
+      <title>Riiid AIEd Challenge 2020</title>
+      <link>https://ruilong96.github.io/project/riiid-challenge-2020/</link>
+      <pubDate>Thu, 19 Nov 2020 09:19:49 -0500</pubDate>
+      <guid>https://ruilong96.github.io/project/riiid-challenge-2020/</guid>
+      <description>&lt;h2 id=&#34;problem-overview&#34;&gt;Problem Overview&lt;/h2&gt;
+&lt;p&gt;Riiid Labs, an AI solutions provider delivering creative disruption to the education market, empowers global education players to rethink traditional ways of learning leveraging AI. With a strong belief in equal opportunity in education, Riiid launched an AI tutor based on deep-learning algorithms in 2017 that attracted more than one million South Korean students. This year, the company released EdNet, the world’s largest open database for AI education containing more than 100 million student interactions.&lt;/p&gt;
+&lt;p&gt;The challenge is to create algorithms for &amp;ldquo;Knowledge Tracing,&amp;rdquo; the modeling of student knowledge over time. The &lt;strong&gt;goal&lt;/strong&gt; is to accurately predict how students will perform on future interactions. You will pair your machine learning skills using Riiid’s EdNet data.&lt;/p&gt;
+&lt;h2 id=&#34;exploratory-data-analysis&#34;&gt;Exploratory Data Analysis&lt;/h2&gt;
+&lt;p&gt;For this analysis, Kaggle provides us with a massive dataset containing five anonymized  files, in which of three contains the details about the students&#39; activities online, the details about the questions, and the details about the lectures. The dataset is a time-series data, and the students&#39; data is recorded chronologically relative to their entry to the system.&lt;/p&gt;
+&lt;p&gt;To understand the dataset better, I conducted an exploratory analysis which yielded the following observation:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;answer_correctly&lt;/code&gt; is not balanced in a way that the answer correctly cases is more than the answer incorrectly cases.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;From &lt;code&gt;user_id&lt;/code&gt; distribution plot, most of the users does not have a lot of activities.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;We observe that the same long left tail distribution for three categorical variables(&lt;code&gt;user_id&lt;/code&gt;, &lt;code&gt;task_id&lt;/code&gt;, &lt;code&gt;task_container_id&lt;/code&gt;), indicating a lot specific instances or users does not have a lot of occurrences.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;As we can see that some distribution plot has a long left tail which is an indicator of outliers because it suggests that some specific users may have very different patterns than the rest of the user.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;timestamp&lt;/code&gt; is correlated with &lt;code&gt;task_container_id&lt;/code&gt; and &lt;code&gt;prior_question_had_explanation&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;content_id&lt;/code&gt; is correlated with &lt;code&gt;content_type_id&lt;/code&gt; showing that they are somehow related.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;prior_question_had_explanation&lt;/code&gt; has positive correlation &lt;code&gt;answered_correctly&lt;/code&gt;, implying that the explanation may help the pupils learn better. Together with the correlation with &lt;code&gt;timestamp&lt;/code&gt;, it may indicate that the longer usage of the platform results in better performance.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;More details are presented in this &lt;a href=&#34;./eda-riiid-answer.html&#34;&gt;notebook&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;data-prepossessing&#34;&gt;Data Prepossessing&lt;/h2&gt;
+&lt;p&gt;Since the training dataset is massive and the computing resource is limited on the Kaggle platform, we need to cross sampling data without losing generality, and the data preparing and cleaning consisted of the following steps:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;The given timestamp is the time that has elapsed since the user&amp;rsquo;s first event, not the actual time, so I set a random first access time for each user within a certain interval.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Splits the data into training and validation data based on the timestamp. To simulate the learning process, the later part of the data is used for validation data.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Isolate the input data and compute the summary transformation (e.g. sum, count) and then Iteratively select the important ones.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;To mimic the learning process and handling new users, progressively update the user statistics, such as the correct answer rate, number of question answered.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;For NA values, we filled in the average values accordingly based on our summary transformation before, or filled in False for Boolean values.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Lastly, convert all variables into numerical variables for LSBM model.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;modeling&#34;&gt;Modeling&lt;/h2&gt;
+&lt;h3 id=&#34;lsbm&#34;&gt;LSBM&lt;/h3&gt;
+&lt;p&gt;The first method used for knowledge tracing model was the LSBM model due to its interpretability and the computational speed. The hyperparameters are tuned within the model, and cross-validated on the prepared validation data to avoid overfitting.&lt;/p&gt;
+&lt;p&gt;The final training&amp;rsquo;s auc is 0.754181, and valid_1&amp;rsquo;s auc is 0.758319.&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./f_imp_lsbm.png&#34; alt=&#34;feature_im&#34;&gt;&lt;/p&gt;
+&lt;p&gt;To see more detail, please check out &lt;a href=&#34;./lgbm-v2-feature-engineering-riiid-answer.html&#34;&gt;here(html)&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;dnn-in-progress&#34;&gt;DNN (in progress)&lt;/h3&gt;
+&lt;p&gt;Since the dataset is a time-series dataset tracing students&#39; knowledge, the deep neural network with its feed forward feature can better approximate students&#39; performance and make prediction. I am planning to use PyTorch to implement this neural net with convolution and pooling layers.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>A/B Testing Experiment — A Udacity Course Final Project</title>
