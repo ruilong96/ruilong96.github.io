@@ -380,5 +380,43 @@ print(&amp;quot;Observed: {:.4}&amp;quot;.format(sum_pv_cont/(sum_pv_exp+sum_pv_
       <description>&lt;div class=&#39;tableauPlaceholder&#39; id=&#39;viz1605903549902&#39; style=&#39;position: relative&#39;&gt;&lt;noscript&gt;&lt;a href=&#39;#&#39;&gt;&lt;img alt=&#39; &#39; src=&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Ni&amp;#47;NintendoSwitchSales_16051607122020&amp;#47;Dashboard2&amp;#47;1_rss.png&#39; style=&#39;border: none&#39; /&gt;&lt;/a&gt;&lt;/noscript&gt;&lt;object class=&#39;tableauViz&#39;  style=&#39;display:none;&#39;&gt;&lt;param name=&#39;host_url&#39; value=&#39;https%3A%2F%2Fpublic.tableau.com%2F&#39; /&gt; &lt;param name=&#39;embed_code_version&#39; value=&#39;3&#39; /&gt; &lt;param name=&#39;site_root&#39; value=&#39;&#39; /&gt;&lt;param name=&#39;name&#39; value=&#39;NintendoSwitchSales_16051607122020&amp;#47;Dashboard2&#39; /&gt;&lt;param name=&#39;tabs&#39; value=&#39;no&#39; /&gt;&lt;param name=&#39;toolbar&#39; value=&#39;yes&#39; /&gt;&lt;param name=&#39;static_image&#39; value=&#39;https:&amp;#47;&amp;#47;public.tableau.com&amp;#47;static&amp;#47;images&amp;#47;Ni&amp;#47;NintendoSwitchSales_16051607122020&amp;#47;Dashboard2&amp;#47;1.png&#39; /&gt; &lt;param name=&#39;animate_transition&#39; value=&#39;yes&#39; /&gt;&lt;param name=&#39;display_static_image&#39; value=&#39;yes&#39; /&gt;&lt;param name=&#39;display_spinner&#39; value=&#39;yes&#39; /&gt;&lt;param name=&#39;display_overlay&#39; value=&#39;yes&#39; /&gt;&lt;param name=&#39;display_count&#39; value=&#39;yes&#39; /&gt;&lt;param name=&#39;language&#39; value=&#39;en&#39; /&gt;&lt;/object&gt;&lt;/div&gt;                &lt;script type=&#39;text/javascript&#39;&gt;                    var divElement = document.getElementById(&#39;viz1605903549902&#39;);                    var vizElement = divElement.getElementsByTagName(&#39;object&#39;)[0];                    if ( divElement.offsetWidth &gt; 800 ) { vizElement.style.width=&#39;1366px&#39;;vizElement.style.height=&#39;1293px&#39;;} else if ( divElement.offsetWidth &gt; 500 ) { vizElement.style.width=&#39;1366px&#39;;vizElement.style.height=&#39;1293px&#39;;} else { vizElement.style.width=&#39;100%&#39;;vizElement.style.height=&#39;727px&#39;;}                     var scriptElement = document.createElement(&#39;script&#39;);                    scriptElement.src = &#39;https://public.tableau.com/javascripts/api/viz_v1.js&#39;;                    vizElement.parentNode.insertBefore(scriptElement, vizElement);                &lt;/script&gt;</description>
     </item>
     
+    <item>
+      <title>Airbnb Price Analysis and Visualization</title>
+      <link>https://ruilong96.github.io/project/airbnb-baseline/</link>
+      <pubDate>Tue, 20 Nov 2018 18:17:32 -0500</pubDate>
+      <guid>https://ruilong96.github.io/project/airbnb-baseline/</guid>
+      <description>&lt;h1 id=&#34;about-the-project&#34;&gt;About the project&lt;/h1&gt;
+&lt;p&gt;The main goal of this project is to analyze the Airbnb listing in the Los Angeles area, provide visualization and some baseline strategy based on the EDA&lt;/p&gt;
+&lt;h1 id=&#34;methodology&#34;&gt;Methodology&lt;/h1&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;The data we used is collected by &lt;a href=&#34;http://insideairbnb.com/get-the-data.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Inside Airbnb&lt;/a&gt;, an open source database that allows people to explore how Airbnb is really being used in cities around the world. Within lots of cities in the database, we focus solely on the Los Angeles area dataset. The data is scraped from the Airbnb website once every month, and normally is on the first Monday of each month. The available data for listings in NYC is ranging from 01 January, 2015 till now. For each of the monthly data, the dataset contains five files as the following&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;listings.csv.gz:&lt;/strong&gt; Detailed Listings data for the Los Angeles area&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Calendar.csv.gz:&lt;/strong&gt; Detailed Calendar Data for listings captured on the scarped day&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reviews.csv.gz:&lt;/strong&gt; Detailed Review Data for listings&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Listings.csv:&lt;/strong&gt; summary information and metrics for listings&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reviews.csv:&lt;/strong&gt; summary review data and Listing ID&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use folim to perform cluster analysis and visualization. The interactive map can be a baseline tool for host to understand the average price in its area&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Use plotly to reveal the trend and the density of new listings on Airbnb in each of the areas.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;takeaways&#34;&gt;Takeaways&lt;/h1&gt;
+&lt;p&gt;&lt;img src=&#34;./map4.gif&#34; alt=&#34;map4&#34;&gt;&lt;img src=&#34;./map1.PNG&#34; alt=&#34;map1&#34;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;./map3.PNG&#34; alt=&#34;map3&#34;&gt;&lt;img src=&#34;./map2.PNG&#34; alt=&#34;map3&#34;&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Popular areas such as Santa Monica Beach, Beverly Hill are more expensive then the other areas.&lt;/li&gt;
+&lt;li&gt;Los Angeles downtown is densely populated by the listings in the recent years, but the price are not as expensive as the other area.&lt;/li&gt;
+&lt;li&gt;Roland heights area has more listings in the recent years with a relatively low price compared to the other area&lt;/li&gt;
+&lt;li&gt;The listings to the north where is closed to Angeles National Forest is relatively expensive but is less supplied. We would recommend that the host in these areas add more listings.&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+    </item>
+    
   </channel>
 </rss>
